@@ -1,0 +1,25 @@
+/**************************************************
+UDFs:在热管区多孔介质中规定一个热量源项
+**************************************************/
+#include "udf.h"
+
+DEFINE_SOURCE(heat_source,cell,thread,dS,eqn)
+{
+
+real Te=343.15;
+real volume=420.2;
+real area=2617;
+real source;
+real Tf;
+real K=465.9;
+
+Tf=C_T(cell,thread);
+
+source=K*area*(Tf-Te)/volume;
+dS[eqn]=0;
+
+return source;
+
+}
+
+
